@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<UNMDestinationChoicePeak
+  Version="1.0.0"
+  Name="UNMDestinationChoicePeakModel"
+  Description="Defines a series of university destination choice peak models, one for each trip purpose. Inputs, are specified for each model. The specification is from the original Excel spreadsheet from AECOM/ASUe"
+  FileName="UNMDestinationChoicePeak.xml"
+>
+    <InputData>
+        <SkimData>
+            <!-- Skim and logsum input data is identified here -->
+            <Source Folder="./inputs/" FileName="dist.txt"  />
+            <Source Folder="./inputs/" FileName="AMTime.txt"  />
+            <Source Folder="./inputs/" FileName="OPTime.txt"  />
+            <Source Folder="./inputs/" FileName="mc_nhbw_all_logsum_pk.txt"  />
+            <Source Folder="./inputs/" FileName="WTL_IVTT_PK.txt"  />
+            <Source Folder="./inputs/" FileName="WTL_TOT_WAIT_TIME_PK.txt"  />
+            <Source Folder="./inputs/" FileName="WTL_XFER_WALK_TIME_PK.txt"  />
+            <Source Folder="./inputs/" FileName="mc_hbw_auto_sufficient_logsum_op.txt"  />
+            <Source Folder="./inputs/" FileName="mc_hbw_auto_sufficient_logsum_pk.txt"  />
+            <Source Folder="./inputs/" FileName="mc_hbo_auto_sufficient_logsum_pk.txt"  />
+            <Source Folder="./inputs/" FileName="Logsum_grad_pk.txt"  />
+            <Source Folder="./inputs/" FileName="Logsum_grad_op.txt"  />
+            <Source Folder="./inputs/" FileName="Logsum_offcam_pk.txt"  />
+            <Source Folder="./inputs/" FileName="Logsum_offcam_op.txt"  />
+            <Source Folder="./inputs/" FileName="Logsum_dbu_pk.txt"  />
+            <Source Folder="./inputs/" FileName="Logsum_ndbu_pk.txt"  />    
+        </SkimData>
+        <SocioEconomicData>
+            <!-- This is the SE file containing socioeconomic data -->
+            <Source Folder="./inputs/" FileName="SE.dbf" CubeID="ZONE" />
+            <!-- File containing mapping between different geographical resolutions such as Cube, TAZ, and district. 
+             This input data is utilized to generate DC model results at different spatial resolutions.
+            -->
+            <Source Folder="./inputs/" FileName="cube_district_IDs.csv" CubeID="CubeID" /> 
+        </SocioEconomicData>
+    </InputData>
+    <OutputData>
+        <!-- Output file names for each trip purpose. For index value view dc pk.xml comments-->
+        <Output Id="1" Folder="./outputs/" />
+        <Output Id="2" Folder="./outputs/" FileName="graduate_pk.csv" Index="1"/>
+        <Output Id="3" Folder="./outputs/" />
+        <Output Id="4" Folder="./outputs/" FileName="under_offcampus_pk.csv" Index="3" />
+        <Output Id="5" Folder="./outputs/" FileName="under_dormbased_pk.csv"/>
+        <Output Id="6" Folder="./outputs/" FileName="under_nondormbased_pk.csv"/>
+        <Output Id="7" Folder="./outputs/" />
+        <Output Id="8" Folder="./outputs/" FileName="faculty_pk.csv" Index= "7" />
+        <Output Id="9" Folder="./outputs/" />
+        <Output Id="10" Folder="./outputs/" FileName="staff_pk.csv" Index= "9" />
+     </OutputData>
+    <Models>
+        <!-- Note that enrollment data is stored by market segments in "dc_mc_property.xml"
+             TripRates and PandA come from the excel file provided by AECOM/ASUe-->
+        <Model Id="1" Name="Grad_HBP" Description="Destination Choice for Home Based - Graduate Student" Enrollment="Graduate" TripRate="0.6227" PandA="Attraction"> </Model>        
+        <Model Id="2" Name="Grad_NHBP" Description="Destination Choice for Non Home Based - Graduate Student" Enrollment="Graduate" TripRate="0.7059" PandA="Attraction"> </Model>        
+        <Model Id="3" Name="Offcam_UG_HBP" Description="Destination Choice for Home Based - Off-campus Undergraduate Student" Enrollment="Undergrad_Off_campus" TripRate="0.48046483947434" PandA="Attraction"> </Model>    
+        <Model Id="4" Name="Offcam_UG_NHBP" Description="Destination Choice for Non Home Based - Off-campus Undergraduate Student" Enrollment="Undergrad_Off_campus" TripRate="0.540250048440738" PandA="Attraction"> </Model>
+        <Model Id="5" Name="On_DBP" Description="Destination Choice for Dorm Based - On-campus Undergraduate Student" Enrollment="Undergrad_On_campus" TripRate="0.93218863547286" PandA="Production"> </Model>
+        <Model Id="6" Name="On_NDBP" Description="Destination Choice for Non Dorm Based - On-campus Undergraduate Student" Enrollment="Undergrad_On_campus" TripRate="0.992549624942947" PandA="Attraction"> </Model>
+        <Model Id="7" Name="Faculty_HBW_Peak" Description="Destination Choice for Home Based - UNM-CNM Faculty" Enrollment="Faculty" TripRate="0.986024112567803" PandA="Attraction"> </Model>
+        <Model Id="8" Name="NHBW_Faculty_Peak" Description="Destination Choice for Non Home Based - UNM-CNM Faculty" Enrollment="Faculty" TripRate="0.767707338252304" PandA="Attraction"> </Model>
+        <Model Id="9" Name="Staff_HBW_Peak" Description="Destination Choice for Home Based - UNM-CNM Staff" Enrollment="Staff" TripRate="1.05079941923284" PandA="Attraction"> </Model>
+        <Model Id="10" Name="NHBW_Staff_Peak" Description="Destination Choice for Non Home Based - UNM-CNM Staff" Enrollment="Staff"  TripRate="0.798415631782396" PandA="Attraction"> </Model>
+    </Models>
+ </UNMDestinationChoicePeak>
+

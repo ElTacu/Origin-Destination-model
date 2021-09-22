@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dc_mc_control
+  Version="1.0.0"
+  Name="Destination Choice / Mode Choice Model Control Property File"
+  Description="Defines Attributes for the different Destination Choice / Mode Choice models according to model properties. The specification is from the original text file from AECOM/ASUe"
+  FileName="dc_mc_property.xml"
+>
+    <Model_Zone_ID_System>
+        <TAZ_Start_ID> 1 </TAZ_Start_ID>
+        <TAZ_Model_Start_ID> 14 </TAZ_Model_Start_ID>
+        <TAZ_Model_End_ID> 907 </TAZ_Model_End_ID>
+        <TAZ_End_ID> 919 </TAZ_End_ID>
+        <TAZ_ID_Log> 907 </TAZ_ID_Log>
+    </Model_Zone_ID_System>
+    
+    <UNM_CNM_Zone_IDs>
+        <UNM_CNM_CUBEID> 778,779,780,781,782,783,784,785,787,788,898,899,900,901,902,903,904,905,906,907 </UNM_CNM_CUBEID>
+        <UNM_CNM_Super_CUBEID> 907 </UNM_CNM_Super_CUBEID>
+    </UNM_CNM_Zone_IDs>
+    
+    <!--The below two variables are needed to create additional variables for DC models -->
+    <Create_Density_Quartile_Variable> pop,total_emp </Create_Density_Quartile_Variable>
+    <Area_Variable_Name> acres </Area_Variable_Name>
+    <!--The below two variables are needed to create accessibility variables for DC models -->
+    <Skim_Data_Names> wtl_ivtt_pk,wtl_tot_wait_time_pk,wtl_xfer_walk_time_pk </Skim_Data_Names>
+    <Employment_Variable_Name> total_emp </Employment_Variable_Name>    
+    
+    <UNM_CNM_Enrollment>
+        <Graduate> 7448 </Graduate>
+        <Undergrad_Off_campus> 31828 </Undergrad_Off_campus>
+        <Undergrad_On_campus> 2815 </Undergrad_On_campus>
+        <Faculty> 4491 </Faculty>
+        <Staff> 13291 </Staff> 
+    </UNM_CNM_Enrollment>    
+    
+    <Models>
+        <Model Name = "Destination Choice Models (Peak Hour)"
+               Model_Id = "1"
+               Model_Specifications ="DestinationChoicePeak.xml"
+               Output_Directory = "outputs"
+               Models_Id_To_Run = "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22" />
+        
+        <Model Name = "Destination Choice Models (Off-Peak Hour)"
+               Model_Id = "2"
+               Model_Specifications ="DestinationChoiceOffPeak.xml"
+               Output_Directory = "outputs"
+               Models_Id_To_Run = "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22" />
+               
+        <Model Name = "UNM-CNM Destination Choice Models  (Peak Hour)"
+               Model_Id = "3"
+               Model_Specifications = "UNMDestinationChoicePeak.xml"
+               Function_University_Zones = "sum"
+               Models_Id_To_Run = "1,2,3,4,5,6,7,8,9,10" />           
+        
+        <Model Name = "UNM-CNM Destination Choice Models  (Off-Peak Hour)"
+               Model_Id = "4"
+               Model_Specifications = "UNMDestinationChoiceOffPeak.xml"
+               Output_Directory = "outputs"
+               Models_Id_To_Run = "1,2,3,4,5,6,7,8,9,10" />                          
+        
+        <Model Name = "Mode Choice Main Models  (Peak Hour)"
+               Model_Id = "5"
+               Model_Specifications = "ModeChoicePeak.xml"
+               Output_Directory = "outputs"
+               Models_Id_To_Run = "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16" />  
+<!--
+        <Model Name = "Mode Choice Main Models  (Off-Peak Hour)"
+               Model_Id = "6"
+               Model_Specifications = = "mc_models_op.xml"
+               Output_Directory = "outputs" 
+               Models_Id_To_Run = "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16" />         
+               
+        <Model Name = "UNM-CNM Mode Choice Models  (Peak Hour)"
+               Model_Id = "7"
+               Model_Specifications = "mc_univ_models_pk.xml"
+               Output_Directory = "outputs" 
+               Models_Id_To_Run = "1,2,3,4,5,6" />          
+        
+        <Model Name = "UNM-CNM Mode Choice Models  (Off-Peak Hour)"
+               Model_Id = "8"
+               Model_Specifications = "mc_univ_models_op.xml"
+               Output_Directory = "outputs" 
+               Models_Id_To_Run = "1,2,3,4,5,6" />       -->       
+    </Models>
+</dc_mc_control>

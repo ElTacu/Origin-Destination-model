@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<DestinationChoicePeak
+  Version="1.0.0"
+  Name="DestinationChoicePeakModel"
+  Description="Defines a series of destination choice peak models, one for each trip purpose. Inputs, variables, expressions, and coefficients are specified for each model. The specification is from the original Excel spreadsheet from AECOM/ASUe"
+  FileName="DestinationChoicePeak.xml"
+>
+    <InputData>
+        <SkimData>
+            <!-- Skim and logsum input data is identified here -->
+            <Source Folder="./inputs/" FileName="dist.txt"  />
+            <Source Folder="./inputs/" FileName="AMTime.txt"  />
+            <Source Folder="./inputs/" FileName="OPTime.txt"  />
+            <Source Folder="./inputs/" FileName="mc_hbw_auto_0_logsum_pk.txt"  />
+            <Source Folder="./inputs/" FileName="mc_hbw_auto_deficient_logsum_pk.txt"  />
+            <Source Folder="./inputs/" FileName="mc_hbw_auto_sufficient_logsum_pk.txt"  />
+            <Source Folder="./inputs/" FileName="mc_hbo_auto_0_logsum_pk.txt"  />
+            <Source Folder="./inputs/" FileName="mc_hbo_auto_deficient_logsum_pk.txt"  />
+            <Source Folder="./inputs/" FileName="mc_hbo_auto_sufficient_logsum_pk.txt"  />
+            <Source Folder="./inputs/" FileName="mc_hbrec_auto_0_logsum_pk.txt"  />
+            <Source Folder="./inputs/" FileName="mc_hbrec_auto_deficient_logsum_pk.txt"  />
+            <Source Folder="./inputs/" FileName="mc_hbrec_auto_sufficient_logsum_pk.txt"  />
+            <Source Folder="./inputs/" FileName="mc_hbshop_auto_0_logsum_pk.txt"  />
+            <Source Folder="./inputs/" FileName="mc_hbshop_auto_deficient_logsum_pk.txt"  />
+            <Source Folder="./inputs/" FileName="mc_hbshop_auto_sufficient_logsum_pk.txt"  />
+            <Source Folder="./inputs/" FileName="mc_nhbo_all_logsum_pk.txt"  />
+            <Source Folder="./inputs/" FileName="mc_nhbw_all_logsum_pk.txt"  />
+            <Source Folder="./inputs/" FileName="mc_hbesms_all_logsum_pk.txt"  />
+            <Source Folder="./inputs/" FileName="mc_hbhigh_all_logsum_pk.txt"  />
+            <Source Folder="./inputs/" FileName="WTL_IVTT_PK.txt"   />
+            <Source Folder="./inputs/" FileName="WTL_TOT_WAIT_TIME_PK.txt"  />
+            <Source Folder="./inputs/" FileName="WTL_XFER_WALK_TIME_PK.txt"  />      
+        </SkimData>
+        <SocioEconomicData>
+            <!-- This is the SE file containing socioeconomic data -->
+            <Source Folder="./inputs/" FileName="SE.dbf" CubeID="ZONE" />
+            <!-- File containing mapping between different geographical resolutions such as Cube, TAZ, and district. 
+             This input data is utilized to generate DC model results at different spatial resolutions.
+            -->
+            <Source Folder="./inputs/" FileName="cube_district_IDs.csv" CubeID="CubeID" /> 
+        </SocioEconomicData>
+        <ProductionAttraction>
+            <!-- Data from trip generation output -->
+            <Source Folder="./inputs/" FileName="PandA_Peak.dbf" CubeID="ZONE" />
+        </ProductionAttraction>
+    </InputData>
+    <OutputData>
+        <!-- Output file names for each trip purpose -->
+        <Output Id="1" Folder="./outputs/" FileName="dc_hbw_auto_0_pk.csv" />
+        <!-- The results of the second and third DC model are saved into memory as the output file name is not provided. 
+           If the user wants the output of this model written as a separate matrix, a name should be provided in the 'File Name' 
+           field and 'ID' number of the model should be deleted from the "Index" field (In row 39 here, for example) 
+           to avoid double counting.
+        -->
+        <Output Id="2" Folder="./outputs/" />
+        <Output Id="3" Folder="./outputs/" />
+        <!-- The matrix "dc_hbw_auto_deficient_pk.csv" is an aggregation of the results from second, third, and fourth DC models. 
+           The numbers 2 and 3 in the column "Index" point to corresponding rows indicated in the "ID" column. The results of 
+           the second and third DC models are stored in memory and can be called by using the corresponding "ID" number.
+           Aggregation is done to confirm to the classification observed by the mode choice models.
+        -->
+        <Output Id="4" Folder="./outputs/" FileName="dc_hbw_auto_deficient_pk.csv" Index="2,3" />
+        <Output Id="5" Folder="./outputs/" />
+        <Output Id="6" Folder="./outputs/" />
+        <Output Id="7" Folder="./outputs/" FileName="dc_hbw_auto_sufficient_pk.csv" Index="5,6" />
+        <Output Id="8" Folder="./outputs/" FileName="dc_nhbw_all_pk.csv"  />
+        <Output Id="9" Folder="./outputs/" FileName="dc_hbrec_auto_0_pk.csv" />
+        <Output Id="10" Folder="./outputs/" FileName="dc_hbrec_auto_deficient_pk.csv"  />
+        <Output Id="11" Folder="./outputs/" FileName="dc_hbrec_auto_sufficient_pk.csv" />
+        <Output Id="12" Folder="./outputs/" FileName="dc_hbshop_auto_0_pk.csv" />
+        <Output Id="13" Folder="./outputs/" FileName="dc_hbshop_auto_deficient_pk.csv" />
+        <Output Id="14" Folder="./outputs/" FileName="dc_hbshop_auto_sufficient_pk.csv" />
+        <Output Id="15" Folder="./outputs/" FileName="dc_hbo_auto_0_pk.csv" />
+        <Output Id="16" Folder="./outputs/"  />
+        <Output Id="17" Folder="./outputs/" FileName="dc_hbo_auto_sufficient_pk.csv" />
+        <Output Id="18" Folder="./outputs/"  />
+        <Output Id="19" Folder="./outputs/" FileName="dc_hbesms_all_pk.csv" />
+        <Output Id="20" Folder="./outputs/" FileName="dc_hbhigh_all_pk.csv" />
+        <Output Id="21" Folder="./outputs/" FileName="dc_hbo_auto_deficient_pk.csv" Index="16" />
+        <Output Id="22" Folder="./outputs/" FileName="dc_nhbo_all_pk.csv" Index="18" />
+     </OutputData>
+    <Models>
+        <Model Id="1" Name="hbw_auto_0" Description="Destination Choice Model for Home-Base Work (Zero auto households)" Productions="HBW1P" Attractions="HBW1A" > </Model>        
+        <Model Id="2" Name="hbw_auto_deficient_inc1" Description="Destination Choice Model for Home-Base Work (Auto deficient and lower income households)" Productions="HBW2P" Attractions="HBW2A" > </Model>
+        <Model Id="3" Name="hbw_auto_deficient_inc2" Description="Destination Choice Model for Home-Base Work (Auto deficient and medium income households)" Productions="HBW3P" Attractions="HBW3A" > </Model>        
+        <Model Id="4" Name="hbw_auto_deficient_inc3" Description="Destination Choice Model for Home-Base Work (Auto deficient and higher income households)" Productions="HBW4P" Attractions="HBW4A" > </Model>
+        <Model Id="5" Name="hbw_auto_sufficient_inc1" Description="Destination Choice Model for Home-Base Work (Auto sufficient and lower income households)" Productions="HBW5P" Attractions="HBW5A" > </Model>
+        <Model Id="6" Name="hbw_auto_sufficient_inc2" Description="Destination Choice Model for Home-Base Work (Auto sufficient and medium income households)" Productions="HBW6P" Attractions="HBW6A" > </Model>
+        <Model Id="7" Name="hbw_auto_sufficient_inc3" Description="Destination Choice Model for Home-Base Work (Auto sufficient and higher income households)" Productions="HBW7P" Attractions="HBW7A" > </Model>
+        <Model Id="8" Name="nhbw_all" Description="Destination Choice Model for Non Home-Base Work" Productions="NHBW1P,NHBW2P,NHBW3P,NHBW4P,NHBW5P,NHBW6P,NHBW7P" Attractions="NHBW1A,NHBW2A,NHBW3A,NHBW4A,NHBW5A,NHBW6A,NHBW7A" > </Model>
+        <Model Id="9" Name="hbrec_auto_0" Description="Destination Choice Model for Home-Base Recreation (Zero auto households)" Productions="HBREC1P"  > </Model>
+        <Model Id="10" Name="hbrec_auto_deficient" Description="Destination Choice Model for Home-Base Social (Auto deficient households)" Productions="HBREC2P,HBREC3P,HBREC4P"  > </Model>
+        <Model Id="11" Name="hbrec_auto_sufficient" Description="Destination Choice Model for Home-Base Recreation (Auto sufficient households)" Productions="HBREC5P,HBREC6P,HBREC7P"  > </Model>
+        <Model Id="12" Name="hbshop_auto_0" Description="Destination Choice Model for Home-Base Shopping (Zero auto households)" Productions="HBSHOP1P"  > </Model>
+        <Model Id="13" Name="hbshop_auto_deficient" Description="Destination Choice Model for Home-Base Shopping (Auto deficient households)" Productions="HBSHOP2P,HBSHOP3P,HBSHOP4P"  > </Model>
+        <Model Id="14" Name="hbshop_auto_sufficient" Description="Destination Choice Model for Home-Base Shopping (Auto sufficient households)" Productions="HBSHOP5P,HBSHOP6P,HBSHOP7P" Attractions="HBSHOP5A,HBSHOP6A,HBSHOP7A" > </Model>
+        <Model Id="15" Name="hbo_auto_0" Description="Destination Choice Model for Home-Base Other (Zero auto households)" Productions="HBO1P"  > </Model>
+        <Model Id="16" Name="hbo_auto_deficient" Description="Destination Choice Model for Home-Base Other (Auto deficient households)" Productions="HBO2P,HBO3P,HBO4P"  > </Model>
+        <Model Id="17" Name="hbo_auto_sufficient" Description="Destination Choice Model for Home-Base Other (Auto sufficient households)" Productions="HBO5P,HBO6P,HBO7P" Attractions="HBO5A,HBO6A,HBO7A" > </Model>
+        <Model Id="18" Name="nhbo_all" Description="Destination Choice Model for Non Home-Base Other" Productions="NHBO1P,NHBO2P,NHBO3P,NHBO4P,NHBO5P,NHBO6P,NHBO7P" Attractions="NHBO1A,NHBO2A,NHBO3A,NHBO4A,NHBO5A,NHBO6A,NHBO7A" >  </Model>
+        <Model Id="19" Name="hbesms_all" Description="Destination Choice Model for Home Base Elementary and Middle School" Productions="HBESCH1P,HBESCH2P,HBESCH3P,HBESCH4P,HBESCH5P,HBESCH6P,HBESCH7P"  > </Model>
+        <Model Id="20" Name="hbhigh_all" Description="Destination Choice Model for Home Base Highschool" Productions="HBHSCH1P,HBHSCH2P,HBHSCH3P,HBHSCH4P,HBHSCH5P,HBHSCH6P,HBHSCH7P"  > </Model>
+        <Model Id="21" Name="hbuniv_all" Description="Destination Choice Model for Home Base University"  Attractions="HBUNIVA" > </Model>
+        <Model Id="22" Name="nhbuniv_all" Description="Destination Choice Model for Non-Home Base University" Attractions="NHBUNIVA" > </Model>
+    </Models>
+ </DestinationChoicePeak>
+

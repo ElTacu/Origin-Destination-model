@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ModeChoicePeak
+  Version="1.0.0"
+  Name="ModeChoicePeakModel"
+  Description="Defines a series of mode choice peak models, one for each trip purpose. Inputs, variables, expressions, and coefficients are specified for each model. The specification is from the original Excel spreadsheet from AECOM/ASUe"
+  FileName="ModeChoicePeak.xml"
+>
+    <InputData>
+        <SkimData>
+            <!-- Skim and logsum input data is identified here -->
+            <Source Folder="./inputs/" FileName="dist.txt" />
+            <Source Folder="./inputs/" FileName="AMtime.txt" />
+            <Source Folder="./inputs/" FileName="OPtime.txt" />
+            <Source Folder="./inputs/" FileName="WTL_IVTT_PK.txt" />
+            <Source Folder="./inputs/" FileName="WTL_INITIAL_WAIT_TIME_PK.txt" />
+            <Source Folder="./inputs/" FileName="WTL_TOT_WAIT_TIME_PK.txt" />
+            <Source Folder="./inputs/" FileName="WTL_XFER_WALK_TIME_PK.txt" />
+            <Source Folder="./inputs/" FileName="WTP_IVTT_PK.txt" />
+            <Source Folder="./inputs/" FileName="WTP_INITIAL_WAIT_TIME_PK.txt" />
+            <Source Folder="./inputs/" FileName="WTP_TOT_WAIT_TIME_PK.txt" />
+            <Source Folder="./inputs/" FileName="WTP_XFER_WALK_TIME_PK.txt" />
+            <Source Folder="./inputs/" FileName="PNRL_IVTT_PK.txt" />
+            <Source Folder="./inputs/" FileName="PNRL_INITIAL_WAIT_TIME_PK.txt" />
+            <Source Folder="./inputs/" FileName="PNRL_TOT_WAIT_TIME_PK.txt" />
+            <Source Folder="./inputs/" FileName="PNRL_XFER_WALK_TIME_PK.txt" />
+            <Source Folder="./inputs/" FileName="PNRL_DRIVE_ACC_TIME_PK.txt" />
+            <Source Folder="./inputs/" FileName="PNRL_DRIVE_ACC_DIST_PK.txt" />
+            <Source Folder="./inputs/" FileName="PNRP_IVTT_PK.txt" />
+            <Source Folder="./inputs/" FileName="PNRP_INITIAL_WAIT_TIME_PK.txt" />
+            <Source Folder="./inputs/" FileName="PNRP_TOT_WAIT_TIME_PK.txt" />
+            <Source Folder="./inputs/" FileName="PNRP_XFER_WALK_TIME_PK.txt" />
+            <Source Folder="./inputs/" FileName="PNRP_DRIVE_ACC_TIME_PK.txt" />
+            <Source Folder="./inputs/" FileName="PNRP_DRIVE_ACC_DIST_PK.txt" />
+            <Source Folder="./inputs/" FileName="KNRL_IVTT_PK.txt" />
+            <Source Folder="./inputs/" FileName="KNRL_INITIAL_WAIT_TIME_PK.txt" />
+            <Source Folder="./inputs/" FileName="KNRL_TOT_WAIT_TIME_PK.txt" />
+            <Source Folder="./inputs/" FileName="KNRL_XFER_WALK_TIME_PK.txt" />
+            <Source Folder="./inputs/" FileName="KNRL_DRIVE_ACC_TIME_PK.txt" />
+            <Source Folder="./inputs/" FileName="KNRL_DRIVE_ACC_DIST_PK.txt" />
+            <Source Folder="./inputs/" FileName="KNRP_IVTT_PK.txt" />
+            <Source Folder="./inputs/" FileName="KNRP_INITIAL_WAIT_TIME_PK.txt" />
+            <Source Folder="./inputs/" FileName="KNRP_TOT_WAIT_TIME_PK.txt" />
+            <Source Folder="./inputs/" FileName="KNRP_XFER_WALK_TIME_PK.txt" />
+            <Source Folder="./inputs/" FileName="KNRP_DRIVE_ACC_TIME_PK.txt" />
+            <Source Folder="./inputs/" FileName="KNRP_DRIVE_ACC_DIST_PK.txt" />        
+        </SkimData>
+        <WalkRelatedData>
+            <!-- This is unknown file need clarification as what is doing -->
+            <Source Folder="./inputs/" FileName="MCMAT01A.dbf" CubeID="Z" />
+            <Source Folder="./inputs/" FileName="walk_estimate.prn" /> 
+            <Source Folder="./inputs/" FileName="walk_esti_3seg.txt" /> 
+        </WalkRelatedData>
+        <TripData>
+            <Input Id="1" Folder="../02_Trip_Distribution_0/Destination_Choice_Model/outputs/" FileName="dc_hbw_auto_0_pk.csv" />
+            <Input Id="2" Folder="../02_Trip_Distribution_0/Destination_Choice_Model/outputs/" FileName="dc_hbw_auto_deficient_pk.csv" />
+            <Input Id="3" Folder="../02_Trip_Distribution_0/Destination_Choice_Model/outputs/" FileName="dc_hbw_auto_sufficient_pk.csv" />
+            <Input Id="4" Folder="../02_Trip_Distribution_0/Destination_Choice_Model/outputs/" FileName="dc_nhbw_all_pk.csv" />
+            <Input Id="5" Folder="../02_Trip_Distribution_0/Destination_Choice_Model/outputs/" FileName="dc_hbrec_auto_0_pk.csv" />
+            <Input Id="6" Folder="../02_Trip_Distribution_0/Destination_Choice_Model/outputs/" FileName="dc_hbrec_auto_deficient_pk.csv" />
+            <Input Id="7" Folder="../02_Trip_Distribution_0/Destination_Choice_Model/outputs/" FileName="dc_hbrec_auto_sufficient_pk.csv" />
+            <Input Id="8" Folder="../02_Trip_Distribution_0/Destination_Choice_Model/outputs/" FileName="dc_hbshop_auto_0_pk.csv" />
+            <Input Id="9" Folder="../02_Trip_Distribution_0/Destination_Choice_Model/outputs/" FileName="dc_hbshop_auto_deficient_pk.csv" />
+            <Input Id="10" Folder="../02_Trip_Distribution_0/Destination_Choice_Model/outputs/" FileName="dc_hbshop_auto_sufficient_pk.csv" />
+            <Input Id="11" Folder="../02_Trip_Distribution_0/Destination_Choice_Model/outputs/" FileName="dc_hbo_auto_0_pk.csv" />
+            <Input Id="12" Folder="../02_Trip_Distribution_0/Destination_Choice_Model/outputs/" FileName="dc_hbo_auto_deficient_pk.csv" />
+            <Input Id="13" Folder="../02_Trip_Distribution_0/Destination_Choice_Model/outputs/" FileName="dc_hbo_auto_sufficient_pk.csv" />
+            <Input Id="14" Folder="../02_Trip_Distribution_0/Destination_Choice_Model/outputs/" FileName="dc_nhbo_all_pk.csv" />
+            <Input Id="15" Folder="../02_Trip_Distribution_0/Destination_Choice_Model/outputs/" FileName="dc_hbesms_all_pk.csv" />            
+            <Input Id="16" Folder="../02_Trip_Distribution_0/Destination_Choice_Model/outputs/" FileName="dc_hbhigh_all_pk.csv" />
+        </TripData>
+    </InputData>
+    <OutputData>
+        <!-- Output file names for each trip purpose.-->
+        <Output Id="1" Folder="./outputs/" FileName="mc_hbw_auto_0.csv" />
+        <Output Id="2" Folder="./outputs/" FileName="mc_hbw_auto_deficient.csv" />
+        <Output Id="3" Folder="./outputs/" FileName="mc_hbw_auto_sufficient.csv" />
+        <Output Id="4" Folder="./outputs/" FileName="mc_nhbw_all.csv" />
+        <Output Id="5" Folder="./outputs/" FileName="mc_hbrec_auto_0.csv" />
+        <Output Id="6" Folder="./outputs/" FileName="mc_hbrec_auto_deficient.csv" />
+        <Output Id="7" Folder="./outputs/" FileName="mc_hbrec_auto_sufficient.csv" />
+        <Output Id="8" Folder="./outputs/" FileName="mc_hbshop_auto_0.csv" />
+        <Output Id="9" Folder="./outputs/" FileName="mc_hbshop_auto_deficient.csv" />
+        <Output Id="10" Folder="./outputs/" FileName="mc_hbshop_auto_sufficient.csv" />
+        <Output Id="11" Folder="./outputs/" FileName="mc_hbo_auto_0.csv" />
+        <Output Id="12" Folder="./outputs/" FileName="mc_hbo_auto_deficient.csv" />
+        <Output Id="13" Folder="./outputs/" FileName="mc_hbo_auto_sufficient.csv" />
+        <Output Id="14" Folder="./outputs/" FileName="mc_nhbo_all.csv" />
+        <Output Id="15" Folder="./outputs/" FileName="mc_hbesms_all.csv" />
+        <Output Id="16" Folder="./outputs/" FileName="mc_hbhigh_all.csv" />
+    </OutputData>
+    <Models>
+        <!-- Note that enrollment data is stored by market segments in "dc_mc_property.xml"
+             TripRates and PandA come from the excel file provided by AECOM/ASUe-->
+        <Model Id="1" Name="hbw_auto_0" Description="Mode Choice Model for Home-Based Work (Zero auto households)" Alternatives="11" NumberOfNest="3" Segment="3" > </Model>        
+        <Model Id="2" Name="hbw_auto_deficient" Description="Mode Choice Model for Home-Based Work (Auto deficient households)" Alternatives="11" NumberOfNest="3" Segment="3" > </Model>
+        <Model Id="3" Name="hbw_auto_sufficient" Description="Mode Choice Model for Home-Based Work (Auto sufficient households)" Alternatives="11" NumberOfNest="3" Segment="3" > </Model>
+        <Model Id="4" Name="nhbw_all" Description="Mode Choice Model for Non Home-Based Work (All) "  Alternatives="11" NumberOfNest="3" Segment="3" > </Model>
+        <Model Id="5" Name="hbrec_auto_0" Description="Mode Choice Model for Home-Based Recreation (Zero auto households)" Alternatives="11" NumberOfNest="3" Segment="3" > </Model>
+        <Model Id="6" Name="hbrec_auto_deficient" Description="Mode Choice Model for Home-Based Recreation (Auto deficient households)" Alternatives="11" NumberOfNest="3" Segment="3"  > </Model>
+        <Model Id="7" Name="hbrec_auto_sufficient" Description="Mode Choice Model for Home-Based Recreation (Auto sufficient households)" Alternatives="11" NumberOfNest="3" Segment="3"  > </Model>
+        <Model Id="8" Name="hbshop_auto_0" Description="Mode Choice Model for Home-Based Shopping (Zero auto households)"  Alternatives="11" NumberOfNest="3" Segment="3" > </Model>
+        <Model Id="9" Name="hbshop_auto_deficient" Description="Mode Choice Model for Home-Based Shopping (Auto deficient households)" Alternatives="11" NumberOfNest="3" Segment="3"  > </Model>
+        <Model Id="10" Name="hbshop_auto_sufficient" Description="Mode Choice Model for Home-Based Shopping (Auto sufficient households)" Alternatives="11" NumberOfNest="3" Segment="3" > </Model>
+        <Model Id="11" Name="hbo_auto_0" Description="Mode Choice Model for Home-Based Other (Zero auto households)" Alternatives="11" NumberOfNest="3" Segment="3" > </Model>
+        <Model Id="12" Name="hbo_auto_deficient" Description="Mode Choice Model for Home-Based Other (Auto deficient households)" Alternatives="11" NumberOfNest="3" Segment="3" > </Model>
+        <Model Id="13" Name="hbo_auto_sufficient" Description="Mode Choice Model for Home-Based Other (Auto sufficient households)" Alternatives="11" NumberOfNest="3" Segment="3" > </Model>
+        <Model Id="14" Name="nhbo_all" Description="Mode Choice Model for Non Home-Based Other (All)" Alternatives="11" NumberOfNest="3" Segment="3" > </Model>
+        <Model Id="15" Name="hbesms_all" Description="Mode Choice Model for Home-Based Elementary and Middle School" Alternatives="11" NumberOfNest="3" Segment="3" > </Model>
+        <Model Id="16" Name="hbhigh_all" Description="Mode Choice Model for Home-Based High School" Alternatives="11" NumberOfNest="3" Segment="3" > </Model>
+    </Models>
+ </ModeChoicePeak>
+
